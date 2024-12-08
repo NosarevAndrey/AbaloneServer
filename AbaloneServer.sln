@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbaloneServer", "AbaloneServer\AbaloneServer.csproj", "{DFCE4D83-5BFF-413C-94BD-6D64E7324280}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFCE4D83-5BFF-413C-94BD-6D64E7324280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFCE4D83-5BFF-413C-94BD-6D64E7324280}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFCE4D83-5BFF-413C-94BD-6D64E7324280}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFCE4D83-5BFF-413C-94BD-6D64E7324280}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FBE1F2E-44BC-45AA-A0DB-E09F4E005C94}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,83 @@
+﻿@model AbaloneServer.Models.AbaloneSubmissionViewModel
+
+@{
+    ViewData["Title"] = "Submit Abalone Data";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Submit Abalone Data</h1>
+    <form asp-action="Submit" asp-controller="Upload" method="post" class="needs-validation" novalidate>
+        <div class="row">
+            <!-- Left column for Sex and Length-related fields -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label for="Sex">Sex</label>
+                    <select asp-for="Sex" asp-items="Html.GetEnumSelectList<AbaloneServer.Models.AbaloneSex>()" class="form-control" required>
+                        <option value="">Select Sex</option>
+                    </select>
+                    <div class="invalid-feedback">Please select the sex of the abalone.</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Length">Length (mm)</label>
+                    <input asp-for="Length" class="form-control" type="number" step="0.01" min="0" required />
+                    <div class="invalid-feedback">Please provide the length of the abalone.</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Diameter">Diameter (mm)</label>
+                    <input asp-for="Diameter" class="form-control" type="number" step="0.01" min="0" required />
+                    <div class="invalid-feedback">Please provide the diameter of the abalone.</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Height">Height (mm)</label>
+                    <input asp-for="Height" class="form-control" type="number" step="0.01" min="0" required />
+                    <div class="invalid-feedback">Please provide the height of the abalone.</div>
+                </div>
+            </div>
+
+            <!-- Right column for Weight-related fields -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label for="WholeWeight">Whole Weight (grams)</label>
+                    <input asp-for="WholeWeight" class="form-control" type="number" step="0.01" min="0" required />
+                    <div class="invalid-feedback">Please provide the whole weight of the abalone.</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="ShuckedWeight">Shucked Weight (grams)</label>
+                    <input asp-for="ShuckedWeight" class="form-control" type="number" step="0.01" min="0" required />
+                    <div class="invalid-feedback">Please provide the shucked weight of the abalone.</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="VisceraWeight">Viscera Weight (grams)</label>
+                    <input asp-for="VisceraWeight" class="form-control" type="number" step="0.01" min="0" required />
+                    <div class="invalid-feedback">Please provide the viscera weight of the abalone.</div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="ShellWeight">Shell Weight (grams)</label>
+                    <input asp-for="ShellWeight" class="form-control" type="number" step="0.01" min="0" required />
+                    <div class="invalid-feedback">Please provide the shell weight of the abalone.</div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Enable Bootstrap validation styles
+        (() => {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+}

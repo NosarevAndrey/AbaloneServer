@@ -1,0 +1,89 @@
+﻿@model AbaloneServer.Models.AbaloneSubmissionViewModel
+@{
+    ViewData["Title"] = "Abalone Age Estimation Results";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Abalone Age Estimation Results</h1>
+
+    <!-- Display Estimated Age -->
+    <div class="row">
+        <div class="col-12">
+            <h3>Estimated Age: @Model.EstimatedAge</h3>
+        </div>
+    </div>
+
+    <!-- Submit to Gallery Button -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#submitGalleryModal">Submit to Gallery</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Submit to Gallery -->
+<div class="modal fade" id="submitGalleryModal" tabindex="-1" aria-labelledby="submitGalleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="submitGalleryModalLabel">Submit Abalone to Gallery</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Gallery Submission Form -->
+                <form asp-action="SubmitToGallery" asp-controller="Upload" method="post" enctype="multipart/form-data">
+                    <!-- Hidden fields for the model data -->
+                    <input type="hidden" asp-for="Sex" />
+                    <input type="hidden" asp-for="Length" />
+                    <input type="hidden" asp-for="Diameter" />
+                    <input type="hidden" asp-for="Height" />
+                    <input type="hidden" asp-for="WholeWeight" />
+                    <input type="hidden" asp-for="ShuckedWeight" />
+                    <input type="hidden" asp-for="VisceraWeight" />
+                    <input type="hidden" asp-for="ShellWeight" />
+                    <input type="hidden" asp-for="EstimatedAge" />
+
+                    <div class="form-group mb-3">
+                        <label for="submitter">Your name</label>
+                        <input type="text" name="Submitter" class="form-control" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="image">Image (required)</label>
+                        <input type="file" name="Image" class="form-control" id="imageInput" accept="image/*" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="description">Description (optional)</label>
+                        <textarea name="Description" class="form-control" rows="3"></textarea>
+                    </div>
+                    <!-- Image Preview -->
+                    <div class="form-group mb-3">
+                        <label>Image Preview</label><br />
+                        <img id="imagePreview" src="" alt="Image Preview" style="max-width: 100%; display: none;" />
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+
+        imageInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.style.display = 'none';
+            }
+        });
+    </script>
+}
